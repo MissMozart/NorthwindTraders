@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Primary;
 public class MainConfig {
 
     @Bean
-    @Primary
     ProductDao productDao(){
         return new SimpleProductDao();
     }

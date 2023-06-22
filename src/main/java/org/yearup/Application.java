@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class Application implements CommandLineRunner {
 
@@ -17,21 +19,11 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Product p1 = new Product("Beans", "Food", 2.00);
-        Product p2 = new Product("Tuna", "Food", 3.25);
+       List<Product> listOfAll = dao.getAll();
+       for (Product p : listOfAll) {
+           System.out.println(p);
+       }
 
-        Product p = null;
-
-        try {
-            dao.add(p1);
-            dao.add(p2);
-
-            p = dao.findByProductId(101L);
-        } catch (BadKeyException e) {
-            throw new RuntimeException(e);
-        }
-
-        System.out.println(p);
 
     }
 }
